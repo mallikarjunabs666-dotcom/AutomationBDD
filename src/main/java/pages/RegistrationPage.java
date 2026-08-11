@@ -37,6 +37,7 @@ public class RegistrationPage {
     private By staticWebTable = By.xpath("//h2[normalize-space()='Static Web Table']/following::table[@name='BookTable']");
 
 //    CI/CD
+//    CI/CD 2nd time
 
 
     // Actions

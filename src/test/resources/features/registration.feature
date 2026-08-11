@@ -21,4 +21,7 @@ Feature: User Registration
       And User select "30" "October" "2026" from date picker
       And User select "Jan" "25" "2017" from another date picker
       And I read values from webtable
+      And I read values from Dynamic WebTable
+      And I read values from pagination Webtable
+
 

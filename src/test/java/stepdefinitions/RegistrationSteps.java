@@ -86,12 +86,20 @@ public class RegistrationSteps {
     }
 
     @When("I read values from webtable")
-    public void staticWebtable()
-    {
+    public void staticWebtable() {
         registrationPage.readValuesFromWebTable();
 
     }
 
+    @When(("I read values from Dynamic WebTable"))
+    public void dynamicWebTable() {
+        registrationPage.readFromDYnamicWebTable();
+    }
+
+    @When("I read values from pagination Webtable")
+    public void readValuesFromPagination() {
+        registrationPage.readFromPaginationWebTable();
+    }
 
 
     @Then("User should see all entered values in the registration form")

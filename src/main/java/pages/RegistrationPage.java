@@ -35,6 +35,9 @@ public class RegistrationPage {
     private By monthDropdown = By.xpath("//select[@class='ui-datepicker-month' and @aria-label='Select month']");
     private By yearDropdown = By.xpath("//select[@class='ui-datepicker-year' and @aria-label='Select year']");
     private By staticWebTable = By.xpath("//h2[normalize-space()='Static Web Table']/following::table[@name='BookTable']");
+    private By dynamicWebTable = By.xpath("//h2[normalize-space()='Dynamic Web Table']/following::table[@id='taskTable']");
+    private By paginationTable = By.xpath("//h2[text()='Pagination Web Table']/following::table[@id='productTable']");
+
 
 //    CI/CD
 //    CI/CD 2nd time
@@ -137,18 +140,82 @@ public class RegistrationPage {
     }
 
     public void readValuesFromWebTable() {
+        WebElement table = driver.findElement(staticWebTable);
 
-//        WebElement table = driver.findElement(staticWebTable);
-//
-//        List<WebElement> rows = table.findElements(By.tagName("tr"));
-//
-//        for (WebElement row : rows) {
-//            List<WebElement> columns = row.findElements(By.tagName("th"));
-//
-//            for (WebElement column : columns) {
-//                System.out.println(column.getText());
-//            }
-//        }
+        List<WebElement> rows = table.findElements(By.tagName("tr"));
+
+        for (WebElement row : rows) {
+            List<WebElement> columns = row.findElements(By.tagName("th"));
+
+            if (columns.isEmpty()) {
+                columns = row.findElements(By.tagName("td"));
+            }
+
+            for (WebElement column : columns) {
+                System.out.print(column.getText() + " | ");
+            }
+
+            System.out.println();
+
+
+        }
+
+
+    }
+
+    public void readFromDYnamicWebTable() {
+        WebElement table = driver.findElement(dynamicWebTable);
+        List<WebElement> rows = table.findElements(By.tagName("tr"));
+        for (WebElement row : rows) {
+            List<WebElement> columns = row.findElements(By.tagName("th"));
+
+            if (columns.isEmpty()) {
+                columns = row.findElements(By.tagName("td"));
+            }
+            for (WebElement column : columns) {
+                System.out.print(column.getText() + " | ");
+            }
+            System.out.println();
+
+
+        }
+    }
+
+    public void readFromPaginationWebTable() {
+
+        List<WebElement> paginations = driver.findElements(By.xpath("//ul[@id='pagination']//a"));
+
+        for (int i = 0; i < paginations.size(); i++) {
+
+            paginations.get(i).click();
+
+            WebElement table = driver.findElement(paginationTable);
+
+            List<WebElement> rows = table.findElements(By.tagName("tr"));
+
+            for (WebElement row : rows) {
+                List<WebElement> columns = row.findElements(By.tagName("th"));
+
+                if (columns.isEmpty()) {
+                    columns = row.findElements(By.tagName("td"));
+                }
+
+                for (WebElement column : columns) {
+                    System.out.print(column.getText() + " | ");
+                }
+
+                System.out.println();
+
+
+            }
+
+            List<WebElement> checkboxes = table.findElements(By.xpath(".//input[@type='checkbox']"));
+            for (WebElement checkbox : checkboxes) {
+                checkbox.click();
+            }
+
+
+        }
     }
 }
 

@@ -36,6 +36,8 @@ public class RegistrationPage {
     private By yearDropdown = By.xpath("//select[@class='ui-datepicker-year' and @aria-label='Select year']");
     private By staticWebTable = By.xpath("//h2[normalize-space()='Static Web Table']/following::table[@name='BookTable']");
 
+//    CI/CD
+
 
     // Actions
     public void enterName(String name) {
